@@ -32,18 +32,41 @@
             </form>
         </div>
 
-        <div class="rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-            <div class="flex flex-col gap-3 p-6 pb-0">
-                <p class="text-sm text-zinc-500 dark:text-zinc-400">Gevonden medewerkers - {{ $medewerkers->total() }} medewerker(s)</p>
+        <div class="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+            <div class="relative flex flex-col items-center gap-3 border-b border-zinc-200 p-4 dark:border-zinc-800">
+                <p class="self-start text-sm text-zinc-500 dark:text-zinc-400 sm:absolute sm:left-4 sm:top-1/2 sm:-translate-y-1/2">
+                    Gevonden medewerkers - {{ $medewerkers->total() }} medewerker(s)
+                </p>
 
-                @if ($medewerkers->hasPages())
-                    <div class="flex justify-center">
-                        {{ $medewerkers->onEachSide(1)->links() }}
+                @if ($medewerkers->lastPage() > 1)
+                    <div class="flex items-center gap-2">
+                        <a
+                            href="{{ $medewerkers->currentPage() > 1 ? $medewerkers->url($medewerkers->currentPage() - 1) : '#' }}"
+                            class="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-300 text-zinc-500 dark:border-zinc-700 {{ $medewerkers->currentPage() > 1 ? 'hover:bg-zinc-100 dark:hover:bg-zinc-800' : 'cursor-not-allowed opacity-50' }}"
+                        >
+                            &lsaquo;
+                        </a>
+
+                        @for ($i = 1; $i <= $medewerkers->lastPage(); $i++)
+                            <a
+                                href="{{ $medewerkers->url($i) }}"
+                                class="flex h-8 w-8 items-center justify-center rounded-lg text-sm font-medium {{ $i === $medewerkers->currentPage() ? 'bg-red-700 text-white' : 'border border-zinc-300 text-red-700 hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800' }}"
+                            >
+                                {{ $i }}
+                            </a>
+                        @endfor
+
+                        <a
+                            href="{{ $medewerkers->currentPage() < $medewerkers->lastPage() ? $medewerkers->url($medewerkers->currentPage() + 1) : '#' }}"
+                            class="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-300 text-zinc-500 dark:border-zinc-700 {{ $medewerkers->currentPage() < $medewerkers->lastPage() ? 'hover:bg-zinc-100 dark:hover:bg-zinc-800' : 'cursor-not-allowed opacity-50' }}"
+                        >
+                            &rsaquo;
+                        </a>
                     </div>
                 @endif
             </div>
 
-            <div class="overflow-x-auto p-6 pt-4">
+            <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800">
                     <thead class="bg-red-700">
                         <tr>

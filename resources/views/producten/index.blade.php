@@ -56,8 +56,8 @@
 
         {{-- Resultatenblok --}}
         <div class="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-            <div class="flex flex-col gap-3 border-b border-zinc-200 p-4 sm:flex-row sm:items-center sm:justify-between dark:border-zinc-800">
-                <p class="text-sm text-zinc-500 dark:text-zinc-400">
+            <div class="relative flex flex-col items-center gap-3 border-b border-zinc-200 p-4 dark:border-zinc-800">
+                <p class="self-start text-sm text-zinc-500 dark:text-zinc-400 sm:absolute sm:left-4 sm:top-1/2 sm:-translate-y-1/2">
                     Gevonden producten - {{ $producten->total() }} product(en)
                 </p>
 

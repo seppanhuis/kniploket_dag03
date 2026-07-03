@@ -4,7 +4,7 @@
         @include('partials.head')
     </head>
     <body class="min-h-screen bg-zinc-100 dark:bg-zinc-950">
-        <flux:header container class="border-b border-red-900/30 bg-[#C8102E] px-4 sm:px-6">
+        <flux:header container class="sticky top-0 z-50 border-b border-red-900/30 bg-[#C8102E] px-4 sm:px-6">
             <flux:sidebar.toggle class="lg:hidden mr-2 text-white" icon="bars-2" inset="left" />
 
             <a href="{{ route('dashboard') }}" wire:navigate class="flex items-center whitespace-nowrap text-lg font-black tracking-wide text-white">
@@ -46,7 +46,6 @@
             </div>
         </flux:header>
 
-        <!-- Mobile Menu -->
         <flux:sidebar collapsible="mobile" sticky class="lg:hidden border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.header>
                 <a href="{{ route('dashboard') }}" wire:navigate class="whitespace-nowrap text-base font-black text-[#C8102E] dark:text-red-300">
