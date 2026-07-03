@@ -18,12 +18,12 @@
             @php
                 $cards = [
                     ['title' => 'Accounts', 'desc' => 'Beheer gebruikersaccounts en roltoewijzingen.', 'href' => '#'],
-                    ['title' => 'Medewerkers', 'desc' => 'Overzicht van medewerkers en hun basisgegevens.', 'href' => '#'],
+                    ['title' => 'Medewerkers', 'desc' => 'Overzicht van medewerkers en hun basisgegevens.', 'href' => route('medewerkers.index')],
                     ['title' => 'Beschikbaarheid', 'desc' => 'Bekijk de beschikbaarheid van medewerkers per dag en tijd.', 'href' => '#'],
                     ['title' => 'Klanten', 'desc' => 'Bekijk en filter klantgegevens op postcode en contactinformatie.', 'href' => '#'],
                     ['title' => 'Afspraken', 'desc' => 'Plan, bekijk en beheer afspraken met status en tijd.', 'href' => route('afspraken.index')],
-                    ['title' => 'Behandelingen', 'desc' => 'Overzicht van behandelingen, duur en prijsinformatie.', 'href' => '#'],
-                    ['title' => 'Producten', 'desc' => 'Bekijk en beheer producten binnen het assortiment.', 'href' => '#'],
+                    ['title' => 'Behandelingen', 'desc' => 'Overzicht van behandelingen, duur en prijsinformatie.', 'href' => route('behandelingen.index')],
+                    ['title' => 'Producten', 'desc' => 'Bekijk en beheer producten binnen het assortiment.', 'href' => route('producten.index')],
                     ['title' => 'Bestellingen', 'desc' => 'Bekijk en beheer klantbestellingen en bestelstatus.', 'href' => '#'],
                 ];
             @endphp

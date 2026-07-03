@@ -15,12 +15,12 @@
                 @php
                     $navItems = [
                         ['label' => 'Accounts', 'href' => '#', 'active' => false],
-                        ['label' => 'Medewerkers', 'href' => '#', 'active' => false],
+                        ['label' => 'Medewerkers', 'href' => route('medewerkers.index'), 'active' => request()->routeIs('medewerkers.*')],
                         ['label' => 'Beschikbaarheid', 'href' => '#', 'active' => false],
                         ['label' => 'Klanten', 'href' => '#', 'active' => false],
                         ['label' => 'Afspraken', 'href' => route('afspraken.index'), 'active' => request()->routeIs('afspraken.*')],
-                        ['label' => 'Behandelingen', 'href' => '#', 'active' => false],
-                        ['label' => 'Producten', 'href' => '#', 'active' => false],
+                        ['label' => 'Behandelingen', 'href' => route('behandelingen.index'), 'active' => request()->routeIs('behandelingen.*')],
+                        ['label' => 'Producten', 'href' => route('producten.index'), 'active' => request()->routeIs('producten.*')],
                         ['label' => 'Bestellingen', 'href' => '#', 'active' => false],
                     ];
                 @endphp
@@ -62,6 +62,9 @@
                     </flux:sidebar.item>
                     <flux:sidebar.item icon="calendar" :href="route('afspraken.index')" :current="request()->routeIs('afspraken.*')" wire:navigate>
                         {{ __('Afspraken') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="calendar" :href="route('behandelingen.index')" :current="request()->routeIs('behandelingen.*')" wire:navigate>
+                        {{ __('Behandelingen') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.nav>
