@@ -38,7 +38,7 @@
                                 <td class="px-4 py-3 text-sm text-zinc-600 dark:text-zinc-300">{{ $product->AantalOpVoorraad }}</td>
                                 <td class="px-4 py-3 text-sm font-medium text-zinc-900 dark:text-zinc-100">EUR {{ number_format($product->VerkoopPrijs, 2, ',', '.') }}</td>
                                 <td class="px-4 py-3 text-center">
-                                    <a href="{{ route('behandelingen.producten.show', [$behandeling->Id, $product->Id]) }}" class="inline-flex items-center rounded-lg bg-red-700 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-red-800">
+                                    <a href="{{ route('behandelingen.producten.show', [$behandeling->Id, $product->Id]) }}" title="Bekijk details van {{ $product->Naam }}" class="inline-flex items-center rounded-lg bg-red-700 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-red-800">
                                         Details
                                     </a>
                                 </td>
@@ -53,7 +53,7 @@
             </div>
 
             <div class="flex justify-end border-t border-zinc-200 p-4 dark:border-zinc-800">
-                <a href="{{ route('behandelingen.index') }}" class="inline-flex items-center rounded-lg border border-blue-500 px-4 py-2 text-sm font-medium text-blue-600 transition hover:bg-blue-50 dark:hover:bg-blue-950/40">
+                <a href="{{ route('behandelingen.index') }}" title="Terug naar behandelingen" class="inline-flex items-center rounded-lg border border-blue-500 px-4 py-2 text-sm font-medium text-blue-600 transition hover:bg-blue-50 dark:hover:bg-blue-950/40">
                     Terug
                 </a>
             </div>

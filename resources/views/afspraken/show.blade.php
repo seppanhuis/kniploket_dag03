@@ -39,11 +39,11 @@
             </dl>
 
             <div class="flex justify-end gap-3 border-t border-zinc-200 px-5 py-4 dark:border-zinc-800">
-                <a href="{{ route('afspraken.edit', $afspraak->Id) }}" wire:navigate
+                <a href="{{ route('afspraken.edit', $afspraak->Id) }}" wire:navigate title="Afspraak wijzigen"
                     class="inline-flex items-center rounded-lg bg-[#C8102E] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#a80d26]">
                     Wijzigen
                 </a>
-                <a href="{{ route('afspraken.index') }}" wire:navigate
+                <a href="{{ route('afspraken.index') }}" wire:navigate title="Terug naar overzicht afspraken"
                     class="inline-flex items-center rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800">
                     Terug
                 </a>

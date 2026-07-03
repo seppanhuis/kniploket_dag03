@@ -23,10 +23,10 @@
                 </div>
 
                 <div class="flex gap-3">
-                    <button type="submit" class="inline-flex items-center rounded-xl bg-red-700 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-red-800">
+                    <button type="submit" title="Filter toepassen" class="inline-flex items-center rounded-xl bg-red-700 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-red-800">
                         Maak selectie
                     </button>
-                    <a href="{{ route('behandelingen.index') }}" class="inline-flex items-center rounded-xl bg-zinc-500 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-600">
+                    <a href="{{ route('behandelingen.index') }}" title="Filter resetten" class="inline-flex items-center rounded-xl bg-zinc-500 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-600">
                         Reset
                     </a>
                 </div>
@@ -43,6 +43,7 @@
                     <div class="flex items-center gap-2">
                         <a
                             href="{{ $behandelingen->currentPage() > 1 ? $behandelingen->url($behandelingen->currentPage() - 1) : '#' }}"
+                            title="Vorige pagina"
                             class="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-300 text-zinc-500 dark:border-zinc-700 {{ $behandelingen->currentPage() > 1 ? 'hover:bg-zinc-100 dark:hover:bg-zinc-800' : 'cursor-not-allowed opacity-50' }}"
                         >
                             &lsaquo;
@@ -51,6 +52,7 @@
                         @for ($i = 1; $i <= $behandelingen->lastPage(); $i++)
                             <a
                                 href="{{ $behandelingen->url($i) }}"
+                                title="Ga naar pagina {{ $i }}"
                                 class="flex h-8 w-8 items-center justify-center rounded-lg text-sm font-medium {{ $i === $behandelingen->currentPage() ? 'bg-red-700 text-white' : 'border border-zinc-300 text-red-700 hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800' }}"
                             >
                                 {{ $i }}
@@ -59,6 +61,7 @@
 
                         <a
                             href="{{ $behandelingen->currentPage() < $behandelingen->lastPage() ? $behandelingen->url($behandelingen->currentPage() + 1) : '#' }}"
+                            title="Volgende pagina"
                             class="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-300 text-zinc-500 dark:border-zinc-700 {{ $behandelingen->currentPage() < $behandelingen->lastPage() ? 'hover:bg-zinc-100 dark:hover:bg-zinc-800' : 'cursor-not-allowed opacity-50' }}"
                         >
                             &rsaquo;
@@ -88,7 +91,7 @@
                                 <td class="px-4 py-3 text-sm font-medium text-zinc-900 dark:text-zinc-100">EUR {{ number_format($behandeling->Prijs, 2, ',', '.') }}</td>
                                 <td class="px-4 py-3 text-sm text-zinc-600 dark:text-zinc-300">{{ $behandeling->AantalProducten }}</td>
                                 <td class="px-4 py-3 text-center">
-                                    <a href="{{ route('behandelingen.producten', $behandeling->Id) }}" class="inline-flex items-center rounded-lg border border-blue-500 px-3 py-1.5 text-sm font-medium text-blue-600 transition hover:bg-blue-50 dark:hover:bg-blue-950/40">
+                                    <a href="{{ route('behandelingen.producten', $behandeling->Id) }}" title="Bekijk producten van {{ $behandeling->Naam }}" class="inline-flex items-center rounded-lg border border-blue-500 px-3 py-1.5 text-sm font-medium text-blue-600 transition hover:bg-blue-50 dark:hover:bg-blue-950/40">
                                         Producten
                                     </a>
                                 </td>

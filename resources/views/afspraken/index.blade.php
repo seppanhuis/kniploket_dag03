@@ -27,10 +27,10 @@
                     </select>
                 </div>
                 <div class="flex gap-2">
-                    <button type="submit" class="inline-flex items-center rounded-lg bg-[#C8102E] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#a80d26]">
+                    <button type="submit" title="Filter toepassen" class="inline-flex items-center rounded-lg bg-[#C8102E] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#a80d26]">
                         Maak selectie
                     </button>
-                    <a href="{{ route('afspraken.index') }}" wire:navigate class="inline-flex items-center rounded-lg bg-zinc-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-zinc-600">
+                    <a href="{{ route('afspraken.index') }}" wire:navigate title="Filter resetten" class="inline-flex items-center rounded-lg bg-zinc-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-zinc-600">
                         Reset
                     </a>
                 </div>
@@ -43,15 +43,15 @@
 
                 @if ($afspraken->lastPage() > 1)
                     <div class="flex items-center justify-center gap-1">
-                        <a href="{{ $afspraken->previousPageUrl() ?? '#' }}" wire:navigate
+                        <a href="{{ $afspraken->previousPageUrl() ?? '#' }}" wire:navigate title="Vorige pagina"
                             class="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-300 text-zinc-500 hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800">&lsaquo;</a>
                         @for ($p = 1; $p <= $afspraken->lastPage(); $p++)
-                            <a href="{{ $afspraken->url($p) }}" wire:navigate
+                            <a href="{{ $afspraken->url($p) }}" wire:navigate title="Ga naar pagina {{ $p }}"
                                 class="flex h-8 w-8 items-center justify-center rounded-lg text-sm font-medium {{ $p === $afspraken->currentPage() ? 'bg-[#C8102E] text-white' : 'border border-zinc-300 text-zinc-600 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800' }}">
                                 {{ $p }}
                             </a>
                         @endfor
-                        <a href="{{ $afspraken->nextPageUrl() ?? '#' }}" wire:navigate
+                        <a href="{{ $afspraken->nextPageUrl() ?? '#' }}" wire:navigate title="Volgende pagina"
                             class="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-300 text-zinc-500 hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800">&rsaquo;</a>
                     </div>
                 @endif
@@ -84,7 +84,7 @@
                                 <td class="px-4 py-3 text-sm text-zinc-900 dark:text-zinc-100">{{ \Illuminate\Support\Carbon::parse($afspraak->Eindtijd)->format('H:i') }}</td>
                                 <td class="px-4 py-3 text-sm text-zinc-900 dark:text-zinc-100">{{ $afspraak->Afspraakstatus }}</td>
                                 <td class="px-4 py-3 text-center">
-                                    <a href="{{ route('afspraken.show', $afspraak->Id) }}" wire:navigate
+                                    <a href="{{ route('afspraken.show', $afspraak->Id) }}" wire:navigate title="Bekijk afspraakdetails van {{ $afspraak->KlantNaam }}"
                                         class="inline-flex items-center rounded-lg border border-blue-600 bg-transparent px-3 py-1.5 text-sm font-medium text-blue-600 transition hover:bg-blue-50 dark:hover:bg-blue-950/40">
                                         Details
                                     </a>

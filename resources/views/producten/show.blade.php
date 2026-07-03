@@ -15,9 +15,9 @@
 
         <div>
             <nav class="text-sm">
-                <a href="{{ route('dashboard') }}" class="font-medium text-red-700 hover:underline">Home</a>
+                <a href="{{ route('dashboard') }}" title="Naar het dashboard" class="font-medium text-red-700 hover:underline">Home</a>
                 <span class="text-zinc-400"> / </span>
-                <a href="{{ route('producten.index') }}" class="font-medium text-red-700 hover:underline">Producten</a>
+                <a href="{{ route('producten.index') }}" title="Naar het productoverzicht" class="font-medium text-red-700 hover:underline">Producten</a>
                 <span class="text-zinc-400"> / </span>
                 <span class="text-zinc-500 dark:text-zinc-400">Detail</span>
             </nav>
@@ -88,10 +88,10 @@
             </dl>
 
             <div class="mt-6 flex justify-end gap-3">
-                <a href="{{ route('producten.edit', $product->Id) }}" class="inline-flex items-center rounded-lg bg-red-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-800">
+                <a href="{{ route('producten.edit', $product->Id) }}" title="Product wijzigen" class="inline-flex items-center rounded-lg bg-red-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-800">
                     Wijzigen
                 </a>
-                <a href="{{ route('producten.index') }}" class="inline-flex items-center rounded-lg border border-blue-500 px-4 py-2 text-sm font-medium text-blue-600 transition hover:bg-blue-50 dark:hover:bg-blue-950/40">
+                <a href="{{ route('producten.index') }}" title="Terug naar productoverzicht" class="inline-flex items-center rounded-lg border border-blue-500 px-4 py-2 text-sm font-medium text-blue-600 transition hover:bg-blue-50 dark:hover:bg-blue-950/40">
                     Terug
                 </a>
             </div>
