@@ -24,7 +24,7 @@ class MedewerkerController extends Controller
 
     public function __construct()
     {
-        $this->medewerkerModel = new Medewerker();
+        $this->medewerkerModel = new Medewerker;
     }
 
     /**
@@ -34,14 +34,14 @@ class MedewerkerController extends Controller
     {
         $filter = $request->query('specialisatie', 'alle');
 
-        if ($filter !== 'alle' && !in_array($filter, self::SPECIALISATIES, true)) {
+        if ($filter !== 'alle' && ! in_array($filter, self::SPECIALISATIES, true)) {
             $filter = 'alle';
         }
 
         try {
             $alleMedewerkers = $this->medewerkerModel->sp_GetAllMedewerkers($filter);
         } catch (\Throwable $e) {
-            Log::error('MedewerkerController@index - Fout bij ophalen medewerkers: ' . $e->getMessage());
+            Log::error('MedewerkerController@index - Fout bij ophalen medewerkers: '.$e->getMessage());
             $alleMedewerkers = [];
         }
 
@@ -76,9 +76,9 @@ class MedewerkerController extends Controller
     {
         try {
             $medewerker = $this->medewerkerModel->sp_GetMedewerkerById($id);
-            abort_if(!$medewerker, 404);
+            abort_if(! $medewerker, 404);
         } catch (\Throwable $e) {
-            Log::error('MedewerkerController@detail - Fout bij ophalen medewerker: ' . $e->getMessage());
+            Log::error('MedewerkerController@detail - Fout bij ophalen medewerker: '.$e->getMessage());
             abort(500, 'Er is een fout opgetreden bij het ophalen van de medewerker.');
         }
 
@@ -95,9 +95,9 @@ class MedewerkerController extends Controller
     {
         try {
             $medewerker = $this->medewerkerModel->sp_GetMedewerkerById($id);
-            abort_if(!$medewerker, 404);
+            abort_if(! $medewerker, 404);
         } catch (\Throwable $e) {
-            Log::error('MedewerkerController@edit - Fout bij ophalen medewerker voor wijzigen: ' . $e->getMessage());
+            Log::error('MedewerkerController@edit - Fout bij ophalen medewerker voor wijzigen: '.$e->getMessage());
             abort(500, 'Er is een fout opgetreden bij het ophalen van de medewerker.');
         }
 
@@ -108,7 +108,7 @@ class MedewerkerController extends Controller
         ]);
     }
 
-   /**
+    /**
      * Verwerk de wijziging van een medewerker.
      * Business-regel: minderjarige medewerkers (< 18 jaar) mogen niet de
      * specialisatie "Permanent" krijgen (werken met gevaarlijke stoffen/chemicaliën).
@@ -117,15 +117,14 @@ class MedewerkerController extends Controller
     {
         $data = $request->validate([
             'naam' => 'required|string|max:191',
-            'specialisatie' => 'required|in:' . implode(',', self::SPECIALISATIES),
-            'geboortedatum' => 'required|date|before:today', // Mag niet in de toekomst of vandaag zijn
-            'contact_email' => 'required|email:filter|max:150', // :filter zorgt voor een strengere e-mail check
+            'specialisatie' => 'required|in:'.implode(',', self::SPECIALISATIES),
+            'geboortedatum' => 'required|date|before:today',
+            'contact_email' => 'required|email:filter|max:150',
             'straatnaam' => 'required|string|max:150',
-            'huisnummer' => 'required|integer|min:1|max:99999', // Voorkomt extreem grote getallen
+            'huisnummer' => 'required|integer|min:1|max:99999',
             'toevoeging' => 'nullable|string|max:20',
-            // Strikte Nederlandse postcode regex (bvb: 1234 AB of 1234AB, sluit ongeldige combinaties uit)
             'postcode' => ['required', 'string', 'regex:/^[1-9][0-9]{3}\s?(?!(?i)(sa|sd|ss))[a-zA-Z]{2}$/'],
-            // Flexibele maar veilige telefoon regex (06-nummer, +316 of 00316 met tussen de 9 en 13 tekens)
+            'plaats' => 'required|string|max:100', // <-- NIEUW: was helemaal vergeten
             'mobiel' => ['required', 'string', 'regex:/^(\+31|0031|0)(6[\s-]?\d{8}|[1-9]\d{1,3}[\s-]?\d{5,7})$/'],
             'opmerking' => 'nullable|string|max:255',
         ], [
@@ -139,6 +138,7 @@ class MedewerkerController extends Controller
             'huisnummer.min' => 'Het huisnummer moet minimaal 1 zijn.',
             'postcode.required' => 'Postcode is verplicht.',
             'postcode.regex' => 'Vul een geldige Nederlandse postcode in (bijv. 1234 AB).',
+            'plaats.required' => 'Plaats is verplicht.', // <-- NIEUW
             'mobiel.required' => 'Mobiel nummer is verplicht.',
             'mobiel.regex' => 'Vul een geldig Nederlands telefoonnummer in (bijv. 0612345678 of +31612345678).',
         ]);
@@ -172,7 +172,7 @@ class MedewerkerController extends Controller
                 'opmerking' => $data['opmerking'] ?? null,
             ]);
         } catch (\Throwable $e) {
-            Log::error('MedewerkerController@update - Fout bij bijwerken medewerker: ' . $e->getMessage());
+            Log::error('MedewerkerController@update - Fout bij bijwerken medewerker: '.$e->getMessage());
 
             return back()->withInput()->with('error', 'Medewerkergegevens zijn niet bijgewerkt');
         }

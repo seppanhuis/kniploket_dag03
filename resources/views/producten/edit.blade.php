@@ -2,7 +2,7 @@
     <div class="flex h-full w-full flex-1 flex-col gap-6 rounded-xl p-4 sm:p-6 lg:p-8">
 
         @if (session('error'))
-            <div class="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800 dark:border-rose-900/60 dark:bg-rose-950/40 dark:text-rose-200">
+            <div class="max-w-3xl rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800 dark:border-rose-900/60 dark:bg-rose-950/40 dark:text-rose-200">
                 {{ session('error') }}
             </div>
         @endif
@@ -96,7 +96,7 @@
                     @error('nieuwe_houdbaarheidsdatum')
                         <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
                     @enderror
-                    <p class="mt-1 text-xs {{ $errors->has('nieuwe_houdbaarheidsdatum') ? 'text-rose-600' : 'text-zinc-500 dark:text-zinc-400' }}">
+                    <p class="mt-1 text-xs text-black dark:text-black">
                         De houdbaarheidsdatum mag uiterlijk met 7 dagen worden verlengd.
                     </p>
                 </div>
