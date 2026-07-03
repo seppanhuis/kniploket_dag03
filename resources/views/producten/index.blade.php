@@ -32,7 +32,7 @@
                     <select
                         id="categorie_id"
                         name="categorie_id"
-                        class="block w-full rounded-lg border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm focus:border-zinc-900 focus:ring-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+                        class="block w-full rounded-lg border border-black bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm focus:border-black focus:ring-black dark:border-black dark:bg-zinc-950 dark:text-zinc-100"
                     >
                         <option value="" {{ is_null($geselecteerdeCategorieId) ? 'selected' : '' }}>Alle categorieën</option>
                         @foreach ($categorieen as $categorie)
