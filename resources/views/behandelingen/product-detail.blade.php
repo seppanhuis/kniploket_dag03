@@ -76,7 +76,7 @@
                 </div>
                 <div class="grid grid-cols-3 gap-4 px-6 py-3">
                     <dt class="text-sm font-medium text-zinc-700 dark:text-zinc-200">Opmerking</dt>
-                    <dd class="col-span-2 text-sm text-zinc-900 dark:text-zinc-100">{{ $product->Opmerking ?? '-' }}</dd>
+                    <dd class="col-span-2 text-sm text-zinc-900 dark:text-zinc-100">{{ $product->Opmerking ?? 'Geschikt voor dagelijks salongebruik' }}</dd>
                 </div>
             </dl>
 
