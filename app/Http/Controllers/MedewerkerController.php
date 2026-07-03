@@ -108,7 +108,7 @@ class MedewerkerController extends Controller
         ]);
     }
 
-    /**
+   /**
      * Verwerk de wijziging van een medewerker.
      * Business-regel: minderjarige medewerkers (< 18 jaar) mogen niet de
      * specialisatie "Permanent" krijgen (werken met gevaarlijke stoffen/chemicaliën).
@@ -118,19 +118,29 @@ class MedewerkerController extends Controller
         $data = $request->validate([
             'naam' => 'required|string|max:191',
             'specialisatie' => 'required|in:' . implode(',', self::SPECIALISATIES),
-            'geboortedatum' => 'required|date',
-            'contact_email' => 'required|email|max:150',
+            'geboortedatum' => 'required|date|before:today', // Mag niet in de toekomst of vandaag zijn
+            'contact_email' => 'required|email:filter|max:150', // :filter zorgt voor een strengere e-mail check
             'straatnaam' => 'required|string|max:150',
-            'huisnummer' => 'required|integer|min:1',
+            'huisnummer' => 'required|integer|min:1|max:99999', // Voorkomt extreem grote getallen
             'toevoeging' => 'nullable|string|max:20',
-            'postcode' => 'required|string|max:20',
-            'plaats' => 'required|string|max:100',
-            'mobiel' => 'required|string|max:50',
+            // Strikte Nederlandse postcode regex (bvb: 1234 AB of 1234AB, sluit ongeldige combinaties uit)
+            'postcode' => ['required', 'string', 'regex:/^[1-9][0-9]{3}\s?(?!(?i)(sa|sd|ss))[a-zA-Z]{2}$/'],
+            // Flexibele maar veilige telefoon regex (06-nummer, +316 of 00316 met tussen de 9 en 13 tekens)
+            'mobiel' => ['required', 'string', 'regex:/^(\+31|0031|0)(6[\s-]?\d{8}|[1-9]\d{1,3}[\s-]?\d{5,7})$/'],
             'opmerking' => 'nullable|string|max:255',
         ], [
             'naam.required' => 'Naam is verplicht.',
+            'naam.max' => 'De naam mag niet langer zijn dan 191 tekens.',
             'specialisatie.required' => 'Specialisatie is verplicht.',
             'geboortedatum.required' => 'Geboortedatum is verplicht.',
+            'geboortedatum.before' => 'De geboortedatum moet in het verleden liggen.',
+            'contact_email.required' => 'Contact e-mail is verplicht.',
+            'contact_email.email' => 'Vul een geldig e-mailadres in.',
+            'huisnummer.min' => 'Het huisnummer moet minimaal 1 zijn.',
+            'postcode.required' => 'Postcode is verplicht.',
+            'postcode.regex' => 'Vul een geldige Nederlandse postcode in (bijv. 1234 AB).',
+            'mobiel.required' => 'Mobiel nummer is verplicht.',
+            'mobiel.regex' => 'Vul een geldig Nederlands telefoonnummer in (bijv. 0612345678 of +31612345678).',
         ]);
 
         $leeftijd = Carbon::parse($data['geboortedatum'])->age;
@@ -156,7 +166,7 @@ class MedewerkerController extends Controller
                 'straatnaam' => $data['straatnaam'],
                 'huisnummer' => $data['huisnummer'],
                 'toevoeging' => $data['toevoeging'] ?? null,
-                'postcode' => $data['postcode'],
+                'postcode' => strtoupper(str_replace(' ', '', $data['postcode'])), // Slaat postcode netjes op zonder spaties en in caps
                 'plaats' => $data['plaats'],
                 'mobiel' => $data['mobiel'],
                 'opmerking' => $data['opmerking'] ?? null,
