@@ -27,6 +27,11 @@
             @csrf
             @method('PUT')
 
+            @php
+                $minGeboortedatum = \Carbon\Carbon::today()->subYears(130)->format('Y-m-d');
+                $maxGeboortedatum = \Carbon\Carbon::today()->subYears(13)->format('Y-m-d');
+            @endphp
+
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div>
                     <label for="naam" class="mb-2 block text-sm font-medium text-zinc-700 dark:text-zinc-200">
@@ -60,6 +65,7 @@
                     </label>
                     <input type="date" id="geboortedatum" name="geboortedatum"
                         value="{{ old('geboortedatum', \Carbon\Carbon::parse($medewerker->Geboortedatum)->format('Y-m-d')) }}"
+                        min="{{ $minGeboortedatum }}" max="{{ $maxGeboortedatum }}"
                         required
                         class="block w-full rounded-xl border-zinc-300 bg-white px-4 py-2.5 text-zinc-900 shadow-sm focus:border-zinc-900 focus:ring-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100">
                 </div>
@@ -153,7 +159,7 @@
             <p class="mt-5 text-xs text-zinc-500 dark:text-zinc-400">Velden met een <span
                     class="text-rose-600">*</span> zijn verplicht.</p>
 
-            <div class="mt-6 flex flex-wrap gap-3">
+            <div class="mt-6 flex flex-wrap justify-end gap-3">
                 <button type="submit" title="Wijzigingen opslaan"
                     class="inline-flex items-center rounded-xl bg-red-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-800">
                     Opslaan

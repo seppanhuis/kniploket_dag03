@@ -115,10 +115,13 @@ class MedewerkerController extends Controller
      */
     public function update(Request $request, int $id)
     {
+        $minGeboortedatum = Carbon::today()->subYears(130)->toDateString();
+        $maxGeboortedatum = Carbon::today()->subYears(13)->toDateString();
+
         $data = $request->validate([
             'naam' => 'required|string|max:191',
             'specialisatie' => 'required|in:'.implode(',', self::SPECIALISATIES),
-            'geboortedatum' => 'required|date|before:today',
+            'geboortedatum' => 'required|date|after_or_equal:'.$minGeboortedatum.'|before_or_equal:'.$maxGeboortedatum,
             'contact_email' => 'required|email:filter|max:150',
             'straatnaam' => 'required|string|max:150',
             'huisnummer' => 'required|integer|min:1|max:99999',
@@ -132,7 +135,8 @@ class MedewerkerController extends Controller
             'naam.max' => 'De naam mag niet langer zijn dan 191 tekens.',
             'specialisatie.required' => 'Specialisatie is verplicht.',
             'geboortedatum.required' => 'Geboortedatum is verplicht.',
-            'geboortedatum.before' => 'De geboortedatum moet in het verleden liggen.',
+            'geboortedatum.after_or_equal' => 'De medewerker moet minimaal 13 jaar oud zijn.',
+            'geboortedatum.before_or_equal' => 'De medewerker mag maximaal 130 jaar oud zijn.',
             'contact_email.required' => 'Contact e-mail is verplicht.',
             'contact_email.email' => 'Vul een geldig e-mailadres in.',
             'huisnummer.min' => 'Het huisnummer moet minimaal 1 zijn.',

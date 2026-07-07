@@ -103,7 +103,7 @@
 
             <p class="mt-5 text-xs text-zinc-500 dark:text-zinc-400">Velden met een <span class="text-rose-600">*</span> zijn verplicht.</p>
 
-            <div class="mt-6 flex flex-wrap gap-3">
+            <div class="mt-6 flex flex-wrap justify-end gap-3">
                 <button type="submit" title="Nieuwe verkoopprijs opslaan" class="inline-flex items-center rounded-xl bg-red-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-800">
                     Opslaan
                 </button>

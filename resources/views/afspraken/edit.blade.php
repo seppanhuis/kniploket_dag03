@@ -121,7 +121,7 @@
 
             <p class="mt-4 text-xs text-zinc-500 dark:text-zinc-400">Velden met een * zijn verplicht.</p>
 
-            <div class="mt-6 flex flex-wrap gap-3">
+            <div class="mt-6 flex flex-wrap justify-end gap-3">
                 <button type="submit" title="Wijzigingen opslaan" class="inline-flex items-center rounded-xl bg-[#C8102E] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#a80d26]">
                     Opslaan
                 </button>
