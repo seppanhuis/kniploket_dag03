@@ -2,7 +2,7 @@
     <div class="flex h-full w-full flex-1 flex-col gap-6 rounded-xl p-4 sm:p-6 lg:p-8">
 
         <nav class="text-sm text-zinc-500 dark:text-zinc-400">
-            <a href="{{ route('dashboard') }}" class="font-medium text-red-700 hover:underline dark:text-red-400">Home</a>
+            <a href="{{ route('dashboard') }}" title="Naar het dashboard" class="font-medium text-red-700 hover:underline dark:text-red-400">Home</a>
             <span class="mx-1">/</span>
             <span class="text-zinc-400 dark:text-zinc-500">Medewerkers</span>
         </nav>
@@ -13,7 +13,7 @@
             <form method="GET" action="{{ route('medewerkers.index') }}" class="flex flex-col items-end gap-3 sm:flex-row sm:justify-end">
                 <div class="w-full sm:w-64">
                     <label for="specialisatie" class="mb-2 block text-sm font-medium text-zinc-700 dark:text-zinc-200">Specialisatie</label>
-                    <select id="specialisatie" name="specialisatie" class="block w-full rounded-xl border-zinc-300 bg-white px-4 py-2.5 text-zinc-900 shadow-sm focus:border-zinc-900 focus:ring-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100">
+                    <select id="specialisatie" name="specialisatie" title="Filter medewerkers op specialisatie" class="block w-full rounded-xl border-zinc-300 bg-white px-4 py-2.5 text-zinc-900 shadow-sm focus:border-zinc-900 focus:ring-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100">
                         <option value="alle" @selected($filter === 'alle')>Alle specialisaties</option>
                         @foreach ($specialisaties as $specialisatie)
                             <option value="{{ $specialisatie }}" @selected($filter === $specialisatie)>{{ $specialisatie }}</option>
@@ -22,10 +22,10 @@
                 </div>
 
                 <div class="flex gap-3">
-                    <button type="submit" class="inline-flex items-center rounded-xl bg-red-700 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-red-800">
+                    <button type="submit" title="Filter toepassen op geselecteerde specialisatie" class="inline-flex items-center rounded-xl bg-red-700 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-red-800">
                         Toon medewerkers
                     </button>
-                    <a href="{{ route('medewerkers.index') }}" class="inline-flex items-center rounded-xl bg-zinc-500 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-600">
+                    <a href="{{ route('medewerkers.index') }}" title="Filter wissen en alle medewerkers tonen" class="inline-flex items-center rounded-xl bg-zinc-500 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-600">
                         Reset
                     </a>
                 </div>
@@ -42,6 +42,7 @@
                     <div class="flex items-center gap-2">
                         <a
                             href="{{ $medewerkers->currentPage() > 1 ? $medewerkers->url($medewerkers->currentPage() - 1) : '#' }}"
+                            title="Vorige pagina"
                             class="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-300 text-zinc-500 dark:border-zinc-700 {{ $medewerkers->currentPage() > 1 ? 'hover:bg-zinc-100 dark:hover:bg-zinc-800' : 'cursor-not-allowed opacity-50' }}"
                         >
                             &lsaquo;
@@ -50,6 +51,7 @@
                         @for ($i = 1; $i <= $medewerkers->lastPage(); $i++)
                             <a
                                 href="{{ $medewerkers->url($i) }}"
+                                title="Ga naar pagina {{ $i }}"
                                 class="flex h-8 w-8 items-center justify-center rounded-lg text-sm font-medium {{ $i === $medewerkers->currentPage() ? 'bg-red-700 text-white' : 'border border-zinc-300 text-red-700 hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800' }}"
                             >
                                 {{ $i }}
@@ -58,6 +60,7 @@
 
                         <a
                             href="{{ $medewerkers->currentPage() < $medewerkers->lastPage() ? $medewerkers->url($medewerkers->currentPage() + 1) : '#' }}"
+                            title="Volgende pagina"
                             class="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-300 text-zinc-500 dark:border-zinc-700 {{ $medewerkers->currentPage() < $medewerkers->lastPage() ? 'hover:bg-zinc-100 dark:hover:bg-zinc-800' : 'cursor-not-allowed opacity-50' }}"
                         >
                             &rsaquo;
@@ -91,7 +94,7 @@
                                 <td class="px-4 py-3 text-sm text-zinc-600 dark:text-zinc-300">{{ $medewerker->Mobiel }}</td>
                                 <td class="px-4 py-3 text-sm text-zinc-600 dark:text-zinc-300">{{ $medewerker->ContactEmail }}</td>
                                 <td class="px-4 py-3 text-center">
-                                    <a href="{{ route('medewerkers.show', $medewerker->Id) }}" class="inline-flex items-center rounded-lg border border-blue-500 px-3 py-1.5 text-sm font-medium text-blue-600 transition hover:bg-blue-50 dark:hover:bg-blue-950/40">
+                                    <a href="{{ route('medewerkers.show', $medewerker->Id) }}" title="Bekijk details van {{ $medewerker->VolledigeNaam }}" class="inline-flex items-center rounded-lg border border-blue-500 px-3 py-1.5 text-sm font-medium text-blue-600 transition hover:bg-blue-50 dark:hover:bg-blue-950/40">
                                         Details
                                     </a>
                                 </td>

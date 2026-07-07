@@ -9,9 +9,9 @@
 
         <div>
             <nav class="text-sm">
-                <a href="{{ route('dashboard') }}" class="font-medium text-red-700 hover:underline">Home</a>
+                <a href="{{ route('dashboard') }}" title="Naar het dashboard" class="font-medium text-red-700 hover:underline">Home</a>
                 <span class="text-zinc-400"> / </span>
-                <a href="{{ route('producten.index') }}" class="font-medium text-red-700 hover:underline">Producten</a>
+                <a href="{{ route('producten.index') }}" title="Naar het productoverzicht" class="font-medium text-red-700 hover:underline">Producten</a>
                 <span class="text-zinc-400"> / </span>
                 <span class="text-zinc-500 dark:text-zinc-400">Wijzigen</span>
             </nav>
@@ -89,6 +89,7 @@
                         type="date"
                         id="nieuwe_houdbaarheidsdatum"
                         name="nieuwe_houdbaarheidsdatum"
+                        title="Vul de nieuwe houdbaarheidsdatum in (max. 7 dagen verlenging)"
                         value="{{ old('nieuwe_houdbaarheidsdatum', \Illuminate\Support\Carbon::parse($product->Houdbaarheidsdatum)->format('Y-m-d')) }}"
                         required
                         class="block w-full rounded-xl border px-4 py-2.5 text-zinc-900 shadow-sm focus:ring-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 {{ $errors->has('nieuwe_houdbaarheidsdatum') ? 'border-rose-500 focus:border-rose-500' : 'border-zinc-300 focus:border-zinc-900 dark:border-zinc-700' }}"
@@ -112,10 +113,10 @@
             </p>
 
             <div class="mt-6 flex flex-wrap gap-3">
-                <button type="submit" class="inline-flex items-center rounded-xl bg-red-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-800">
+                <button type="submit" title="Wijzigingen opslaan" class="inline-flex items-center rounded-xl bg-red-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-800">
                     Opslaan
                 </button>
-                <a href="{{ route('producten.show', $product->Id) }}" class="inline-flex items-center rounded-xl bg-zinc-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-zinc-600">
+                <a href="{{ route('producten.show', $product->Id) }}" title="Terug naar productdetail zonder op te slaan" class="inline-flex items-center rounded-xl bg-zinc-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-zinc-600">
                     Terug
                 </a>
             </div>

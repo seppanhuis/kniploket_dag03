@@ -15,7 +15,7 @@
 
         <div>
             <nav class="text-sm">
-                <a href="{{ route('dashboard') }}" class="font-medium text-red-700 hover:underline">Home</a>
+                <a href="{{ route('dashboard') }}" title="Naar het dashboard" class="font-medium text-red-700 hover:underline">Home</a>
                 <span class="text-zinc-400"> / </span>
                 <span class="text-zinc-500 dark:text-zinc-400">Producten</span>
             </nav>
@@ -32,7 +32,8 @@
                     <select
                         id="categorie_id"
                         name="categorie_id"
-                        class="block w-full rounded-lg border border-black bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm focus:border-black focus:ring-black dark:border-black dark:bg-zinc-950 dark:text-zinc-100"
+                        title="Selecteer een categorie om op te filteren"
+                        class="block w-full rounded-lg border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm focus:border-zinc-900 focus:ring-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
                     >
                         <option value="" {{ is_null($geselecteerdeCategorieId) ? 'selected' : '' }}>Alle categorieën</option>
                         @foreach ($categorieen as $categorie)
@@ -44,10 +45,10 @@
                 </div>
 
                 <div class="flex gap-3">
-                    <button type="submit" class="inline-flex items-center rounded-lg bg-red-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-800">
+                    <button type="submit" title="Filter toepassen op geselecteerde categorie" class="inline-flex items-center rounded-lg bg-red-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-800">
                         Maak selectie
                     </button>
-                    <a href="{{ route('producten.index') }}" class="inline-flex items-center rounded-lg bg-zinc-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-zinc-600">
+                    <a href="{{ route('producten.index') }}" title="Filter wissen en alle producten tonen" class="inline-flex items-center rounded-lg bg-zinc-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-zinc-600">
                         Reset
                     </a>
                 </div>
@@ -65,6 +66,7 @@
                     <div class="flex items-center gap-2">
                         <a
                             href="{{ $producten->currentPage() > 1 ? $producten->url($producten->currentPage() - 1) : '#' }}"
+                            title="Vorige pagina"
                             class="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-300 text-zinc-500 dark:border-zinc-700 {{ $producten->currentPage() > 1 ? 'hover:bg-zinc-100 dark:hover:bg-zinc-800' : 'cursor-not-allowed opacity-50' }}"
                         >
                             &lsaquo;
@@ -73,6 +75,7 @@
                         @for ($i = 1; $i <= $producten->lastPage(); $i++)
                             <a
                                 href="{{ $producten->url($i) }}"
+                                title="Ga naar pagina {{ $i }}"
                                 class="flex h-8 w-8 items-center justify-center rounded-lg text-sm font-medium {{ $i === $producten->currentPage() ? 'bg-red-700 text-white' : 'border border-zinc-300 text-red-700 hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800' }}"
                             >
                                 {{ $i }}
@@ -81,6 +84,7 @@
 
                         <a
                             href="{{ $producten->currentPage() < $producten->lastPage() ? $producten->url($producten->currentPage() + 1) : '#' }}"
+                            title="Volgende pagina"
                             class="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-300 text-zinc-500 dark:border-zinc-700 {{ $producten->currentPage() < $producten->lastPage() ? 'hover:bg-zinc-100 dark:hover:bg-zinc-800' : 'cursor-not-allowed opacity-50' }}"
                         >
                             &rsaquo;
@@ -112,7 +116,7 @@
                                 <td class="px-4 py-3 text-sm text-zinc-900 dark:text-zinc-100">EUR {{ number_format($product->VerkoopPrijs, 2, ',', '.') }}</td>
                                 <td class="px-4 py-3 text-sm text-zinc-600 dark:text-zinc-300">{{ $product->AantalOpVoorraad }}</td>
                                 <td class="px-4 py-3 text-center">
-                                    <a href="{{ route('producten.show', $product->Id) }}" class="inline-flex items-center rounded-lg border border-blue-500 px-3 py-1.5 text-sm font-medium text-blue-600 transition hover:bg-blue-50 dark:hover:bg-blue-950/40">
+                                    <a href="{{ route('producten.show', $product->Id) }}" title="Bekijk details van {{ $product->Naam }}" class="inline-flex items-center rounded-lg border border-blue-500 px-3 py-1.5 text-sm font-medium text-blue-600 transition hover:bg-blue-50 dark:hover:bg-blue-950/40">
                                         Details
                                     </a>
                                 </td>

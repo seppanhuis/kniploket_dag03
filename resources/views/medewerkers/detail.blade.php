@@ -8,9 +8,9 @@
         @endif
 
         <nav class="text-sm text-zinc-500 dark:text-zinc-400">
-            <a href="{{ route('dashboard') }}" class="font-medium text-red-700 hover:underline dark:text-red-400">Home</a>
+            <a href="{{ route('dashboard') }}" title="Naar het dashboard" class="font-medium text-red-700 hover:underline dark:text-red-400">Home</a>
             <span class="mx-1">/</span>
-            <a href="{{ route('medewerkers.index') }}" class="font-medium text-red-700 hover:underline dark:text-red-400">Medewerkers</a>
+            <a href="{{ route('medewerkers.index') }}" title="Naar het medewerkeroverzicht" class="font-medium text-red-700 hover:underline dark:text-red-400">Medewerkers</a>
             <span class="mx-1">/</span>
             <span class="text-zinc-400 dark:text-zinc-500">Detail</span>
         </nav>
@@ -73,10 +73,10 @@
             </dl>
 
             <div class="flex justify-end gap-3 border-t border-zinc-200 p-4 dark:border-zinc-800">
-                <a href="{{ route('medewerkers.edit', $medewerker->Id) }}" class="inline-flex items-center rounded-lg bg-red-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-800">
+                <a href="{{ route('medewerkers.edit', $medewerker->Id) }}" title="Medewerker wijzigen" class="inline-flex items-center rounded-lg bg-red-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-800">
                     Wijzigen
                 </a>
-                <a href="{{ route('medewerkers.index') }}" class="inline-flex items-center rounded-lg border border-blue-500 px-4 py-2 text-sm font-medium text-blue-600 transition hover:bg-blue-50 dark:hover:bg-blue-950/40">
+                <a href="{{ route('medewerkers.index') }}" title="Terug naar medewerkeroverzicht" class="inline-flex items-center rounded-lg border border-blue-500 px-4 py-2 text-sm font-medium text-blue-600 transition hover:bg-blue-50 dark:hover:bg-blue-950/40">
                     Terug
                 </a>
             </div>
