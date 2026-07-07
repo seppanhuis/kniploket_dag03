@@ -17,15 +17,15 @@
         <div class="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800">
-                    <thead class="bg-red-700">
+                    <thead class="bg-white dark:bg-zinc-900">
                         <tr>
-                            <th class="px-4 py-3 text-left text-sm font-medium text-white">Product</th>
-                            <th class="px-4 py-3 text-left text-sm font-medium text-white">Merk</th>
-                            <th class="px-4 py-3 text-left text-sm font-medium text-white">Omschrijving</th>
-                            <th class="px-4 py-3 text-left text-sm font-medium text-white">EAN-code</th>
-                            <th class="px-4 py-3 text-left text-sm font-medium text-white">Aantal op voorraad</th>
-                            <th class="px-4 py-3 text-left text-sm font-medium text-white">Verkoopprijs</th>
-                            <th class="px-4 py-3 text-center text-sm font-medium text-white">Actie</th>
+                            <th class="px-4 py-3 text-left text-sm font-medium text-zinc-900 dark:text-zinc-100">Product</th>
+                            <th class="px-4 py-3 text-left text-sm font-medium text-zinc-900 dark:text-zinc-100">Merk</th>
+                            <th class="px-4 py-3 text-left text-sm font-medium text-zinc-900 dark:text-zinc-100">Omschrijving</th>
+                            <th class="px-4 py-3 text-left text-sm font-medium text-zinc-900 dark:text-zinc-100">EAN-code</th>
+                            <th class="px-4 py-3 text-left text-sm font-medium text-zinc-900 dark:text-zinc-100">Aantal op voorraad</th>
+                            <th class="px-4 py-3 text-left text-sm font-medium text-zinc-900 dark:text-zinc-100">Verkoopprijs</th>
+                            <th class="px-4 py-3 text-center text-sm font-medium text-zinc-900 dark:text-zinc-100">Actie</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800">

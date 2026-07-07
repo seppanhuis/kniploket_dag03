@@ -2,7 +2,7 @@
     <div class="flex h-full w-full flex-1 flex-col gap-6 rounded-xl p-4 sm:p-6 lg:p-8">
 
         @if (session('error'))
-            <div class="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800 dark:border-rose-900/60 dark:bg-rose-950/40 dark:text-rose-200">
+            <div class="max-w-4xl rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800 dark:border-rose-900/60 dark:bg-rose-950/40 dark:text-rose-200">
                 {{ session('error') }}
             </div>
         @endif
@@ -79,6 +79,10 @@
                     <label for="nieuwe_verkoopprijs" class="mb-2 block text-sm font-medium text-zinc-700 dark:text-zinc-200">
                         Nieuwe verkoopprijs <span class="text-rose-600">*</span>
                     </label>
+                    @php
+                        $heeftNieuweVerkoopprijsFout = $errors->has('nieuwe_verkoopprijs');
+                    @endphp
+                    <div class="relative">
                     <input
                         type="number"
                         step="0.01"
@@ -87,8 +91,16 @@
                         name="nieuwe_verkoopprijs"
                         value="{{ old('nieuwe_verkoopprijs', number_format($product->VerkoopPrijs, 2, '.', '')) }}"
                         required
-                        class="block w-full rounded-xl px-4 py-2.5 text-zinc-900 shadow-sm focus:ring-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 {{ $errors->has('nieuwe_verkoopprijs') ? 'border-rose-500 focus:border-rose-500 ring-1 ring-rose-500' : 'border-zinc-300 focus:border-zinc-900 dark:border-zinc-700' }}"
+                        class="block w-full rounded-xl px-4 py-2.5 pr-11 text-zinc-900 shadow-sm focus:ring-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 {{ $heeftNieuweVerkoopprijsFout ? 'border-rose-500 focus:border-rose-500 ring-1 ring-rose-500' : 'border-zinc-300 focus:border-zinc-900 dark:border-zinc-700' }}"
                     >
+                        @if ($heeftNieuweVerkoopprijsFout)
+                            <span class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-rose-500" aria-hidden="true">
+                                <svg viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                                    <path fill-rule="evenodd" d="M18 10A8 8 0 1 1 2 10a8 8 0 0 1 16 0Zm-8.75-3.5a.75.75 0 0 1 1.5 0v4.25a.75.75 0 0 1-1.5 0V6.5Zm0 7a.75.75 0 0 1 1.5 0v.25a.75.75 0 0 1-1.5 0v-.25Z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        @endif
+                    </div>
                     @error('nieuwe_verkoopprijs')
                         <p class="mt-1 text-sm text-rose-600">{{ $message }}</p>
                     @enderror
