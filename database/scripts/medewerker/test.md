@@ -23,3 +23,9 @@
 - Naam verplicht
 - Telefoonnummer formaat
 - Unit tests schrijven
+
+## Test Cases
+- [ ] Medewerker toevoegen met alle velden
+- [ ] Foutmelding bij lege velden
+- [ ] Email dubbel wordt geweigerd
+- [ ] Verwijderen werkt
