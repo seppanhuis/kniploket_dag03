@@ -16,3 +16,10 @@
 - Read: Ophalen medewerker
 - Update: Bewerken medewerker
 - Delete: Verwijderen medewerker
+
+
+## Commit 4: Validatie & Tests
+- Email moet uniek zijn
+- Naam verplicht
+- Telefoonnummer formaat
+- Unit tests schrijven
