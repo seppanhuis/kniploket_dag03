@@ -10,3 +10,9 @@
 - Afspraak.php model
 - Medewerker relatie toevoegen
 - Validatie regels
+
+## Commit 3: CRUD Controller
+- Create: Nieuwe medewerker
+- Read: Ophalen medewerker
+- Update: Bewerken medewerker
+- Delete: Verwijderen medewerker
